@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
-from pymongo import MongoClient
-import requests, json
+# from pymongo import MongoClient
 from subprocess import Popen, PIPE
+import requests, json, socket
 
 app = Flask(__name__)
 
@@ -11,9 +11,11 @@ app = Flask(__name__)
 # weather_c = db.weather_c
 # map_c = db.map_c
 
+hostname=socket.gethostname()
+
 @app.route('/')
 def home():
-    return render_template('frontend/index.html')
+    return render_template('frontend/index.html', hostname = hostname)
 
 @app.route('/runcode', methods=['POST'])
 # API to handle POST request for Maps sent by client
@@ -38,4 +40,5 @@ def runcode():
     return jsonify(stdout)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
