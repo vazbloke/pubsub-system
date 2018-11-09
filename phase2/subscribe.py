@@ -8,5 +8,5 @@ class Subscribe:
 
     def unsubscribe(self, mail_id, event):
         database = db.DB()
-        database.remove_subsriber(mail_id, event)
+        database.remove_subscriber(mail_id, event)
 
