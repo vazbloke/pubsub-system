@@ -46,9 +46,18 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href="/">
                         Dashboard
                     </a>
+                </li>
+                <br>
+                <li>
+                    <a href="publisher" data-placement="top" title="Help" data-content="Input code in Python">Publisher</a>
+
+                </li>
+                <li>
+                    <a href="subscriber" data-placement="top" title="Help" data-content="Input code in Python">Subscriber</a>
+
                 </li>
                 <br>
                 <li>
@@ -56,13 +65,10 @@
 
                 </li>
                 <li>
-                    <a href="mailto:adityavazhipokkil@gmail.com">Contact</a>
-                </li>
-                <li>
                     <a href="#" data-toggle="popover" data-placement="bottom" title="About" data-content="Developed by Aditya and Pratik">About</a>
 
                 </li>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <li>
                         <a href="#">Aditya | Pratik</a>
     
@@ -75,26 +81,18 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <h1>Publisher Terminal</h1>
+                <h1>Publisher-Subscriber System</h1>
                 <p>Hostname of docker container : {{ hostname }}</p>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Code : </label>
-                    <textarea class="form-control" id="codebox2" rows="5"></textarea>
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                            <button onclick="runCode(event)" class="btn btn-dark" type="button">Run Code</button>
-                    </div>
-                    <input id="outputbox" class="form-control" type="text" placeholder="Output..." readonly>
-                    
-                </div>
+                <br><br><br>
+                <p>This web application is a proof-of-concept of a job/shift posting system, implemented using pub-sub.</p>
+                <br>
+                <p>To get started, click either Publisher or Subscriber on the sidebar.</p>
                 
             </div>
-            <p id="output"></p>
         </div>
 
     </div>
-        <script>
+        <!-- <script>
             function runCode(event) { 
                 event.preventDefault();
                 console.log("running onclick")
@@ -110,7 +108,6 @@
                     success: function(data) {
                         console.log('SUCCESS');
                         console.log(data);
-                        // document.getElementById("outputbox").innerHTML = data;
                         document.getElementById("outputbox").value=data;
                     },
                     error: function() {
@@ -119,7 +116,7 @@
                 });
             }
 
-        </script>
+        </script> -->
 
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

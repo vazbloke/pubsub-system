@@ -46,32 +46,29 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                    <a href="/">
                         Dashboard
                     </a>
                 </li>
                 <br>
                 <li>
-                    <a href="#" data-placement="top" title="Help" data-content="Input code in Python">Publisher</a>
+                    <a href="publisher" data-placement="top" title="Help" data-content="Input code in Python">Publisher</a>
+
+                </li>
+                <li>
+                    <a href="subscriber" data-placement="top" title="Help" data-content="Input code in Python">Subscriber</a>
 
                 </li>
                 <br>
-                <li>
-                    <a href="#" data-placement="top" title="Help" data-content="Input code in Python">Subscriber</a>
-
-                </li>
                 <li>
                     <a href="#" data-toggle="popover" data-placement="top" title="Help" data-content="Input code in Python">Help</a>
 
                 </li>
                 <li>
-                    <a href="mailto:adityavazhipokkil@gmail.com">Contact</a>
-                </li>
-                <li>
                     <a href="#" data-toggle="popover" data-placement="bottom" title="About" data-content="Developed by Aditya and Pratik">About</a>
 
                 </li>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <li>
                         <a href="#">Aditya | Pratik</a>
     
@@ -86,15 +83,10 @@
             <div class="container-fluid">
                 <h1>Subscriber Terminal</h1>
                 <p>Hostname of docker container : {{ hostname }}</p>
-                <!-- <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Code : </label>
-                    <textarea class="form-control" id="codebox2" rows="5"></textarea>
-                </div> -->
                 <form>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="subscriberemail" aria-describedby="emailHelp" placeholder="Enter email">
-                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        <input type="email" class="form-control" id="subscriberemail" aria-describedby="emailHelp" placeholder="Enter email of subscriber">
                     </div>
                 </form>
                 <div class="form-check">
@@ -123,9 +115,7 @@
                 </div>
                 <br>
                 <div class="input-group mb-3">
-                    <!-- <div class="input-group-prepend"> -->
-                <button onclick = "doSubscribe(event)" type="button" class="btn btn-secondary">Subscribe</button>
-                    <!-- </div>     -->
+                    <button onclick = "doSubscribe(event)" type="button" class="btn btn-secondary">Subscribe</button>
                 </div>
                 
             </div>
@@ -158,7 +148,6 @@
                     console.log('SUCCESS');
                     console.log(data);
                     document.getElementById("outputbox").innerHTML = "Subscribed";
-                    // document.getElementById("outputbox").value=data;
                 },
                 error: function() {
                     console.log('FAILED');
