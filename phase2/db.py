@@ -56,7 +56,7 @@ class DB:
         cursor = self.get_connection()
         cursor.execute("select subscriber_email_list from " + table + " where event_type='"+event+"';")
         res = cursor.fetchall()
-        sub_list = res[0]["subscriber_email_list"]
+        sub_list = res[0][0]
         self.close()
         return sub_list.split(";")
 

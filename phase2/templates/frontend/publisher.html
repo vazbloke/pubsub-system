@@ -124,9 +124,9 @@
                     <br>
                     <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="event_message">Message</span>
+                              <span class="input-group-text" >Message</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" id="event_message" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <!-- <div class="input-group-prepend"> -->
@@ -144,28 +144,29 @@
                 event.preventDefault();
                 console.log("running onclick")
                 var eventstring ='';
-                subemail = document.getElementById('subscriberemail').value;
+                <!--subemail = document.getElementById('subscriberemail').value;-->
                 eventmessage = document.getElementById('event_message').value;
                 if(document.getElementById('fowlplay').checked)
-                    eventstring+=';fowlplay';
+                    eventstring+='fowlplay';
                 if(document.getElementById('stackers').checked)
-                    eventstring+=';stackers';
+                    eventstring+='stackers';
                 if(document.getElementById('union').checked)
-                    eventstring+=';union';
+                    eventstring+='union';
                 if(document.getElementById('edgyveggie').checked)
-                    eventstring+=';edgyveggie';
-                var requestJson = {'subemail': subemail, 'events': eventstring, 'eventmessage': eventmessage};
+                    eventstring+='edgyveggie';
+
+                var requestJson = {'events': eventstring, 'eventmessage': eventmessage};
+                console.log(requestJson);
                 $.ajax({
                     type: "POST",
-                    url: '/runcode',
+                    url: '/addpublish',
                     contentType: 'application/json',
                     dataType: 'json',
                     data: JSON.stringify(requestJson),
                     success: function(data) {
                         console.log('SUCCESS');
                         console.log(data);
-                        document.getElementById("outputbox").innerHTML = data;
-                        document.getElementById("outputbox").value=data;
+
                     },
                     error: function() {
                         console.log('FAILED');
