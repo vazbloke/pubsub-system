@@ -2,7 +2,7 @@ import psycopg2
 
 USER = 'postgres'
 PASSWORD = 'root'
-HOST = 'localhost'
+HOST = '172.17.0.3'
 PORT = '5432'
 
 
@@ -65,7 +65,6 @@ def main():
     d = DB()
     d.add_subscriber("emzdail@google.com","putnam;pistachio")
     d.show_events()
-
 
 if __name__ == '__main__':
     main()
