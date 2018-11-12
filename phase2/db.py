@@ -1,8 +1,9 @@
-import psycopg2
+import psycopg2, os
 
 USER = 'postgres'
 PASSWORD = 'root'
-HOST = '172.17.0.3'
+HOST = os.environ['HOST']
+# HOST = '172.17.0.3'
 PORT = '5432'
 
 
@@ -42,6 +43,17 @@ class DB:
             print(sql)
             cursor.execute(sql)
             self.conn.commit()
+        self.close()
+
+    def initial_tables(self):
+        cursor = self.get_connection()
+        cursor.execute("create database sample;" + "\\c sample;" + \
+        "create table events(event_type varchar, subscriber_email_list varchar, primary key (event_type));" + \
+        "insert into events select 'stackers','';" + \
+        "insert into events select 'fowlplay','';" + \
+        "insert into events select 'union','';" + \
+        "insert into events select 'edgyveggie','';")
+        self.conn.commit()
         self.close()
 
     def show_events(self, table='events'):
