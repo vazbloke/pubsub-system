@@ -10,8 +10,6 @@ app = Flask(__name__)
 
 hostname=socket.gethostname()
 
-DB().initial_tables()
-
 @app.route('/')
 def index():
     return render_template('frontend/index.html', hostname = hostname)
