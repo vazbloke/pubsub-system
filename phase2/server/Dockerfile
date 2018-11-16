@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:2.7-slim
+FROM python:3.7.1-slim
 
 # Set the working directory to /app
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install flask requests
+RUN pip install flask requests psycopg2-binary
 
 # Make port 80 available to the world outside this container
 EXPOSE 80

@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  my-postgres-db:
+      build: db/
+      container_name: my-postgres-db
+      environment:
+        - POSTGRES_PASSWORD=root
+      ports:
+        - 5432:5432
+  
+  phase3-server:
+    build: server/
+    container_name: phase3-server
+    environment:
+      - HOST=my-postgres-db
+      - BROKERLIST=broker-1,broker-2,broker-3
+    ports:
+      - 5000:80
+    
+  broker-1:
+    build: broker/
+    container_name: broker-1
+    environment:
+      - HOST=my-postgres-db
+      - NEIGHBORS=broker-2,broker-3
+      - BROKER_NAME=broker_1
+  
+  broker-2:
+    build: broker/
+    container_name: broker-2
+    environment:
+      - HOST=my-postgres-db
+      - NEIGHBORS=broker-1
+      - BROKER_NAME=broker_2
+  
+  broker-3:
+    build: broker/
+    container_name: broker-3
+    environment:
+      - HOST=my-postgres-db
+      - NEIGHBORS=broker-1
+      - BROKER_NAME=broker_3
+  

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Phase 2</title>
+
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/simple-sidebar.css" rel="stylesheet">
+    <style>
+        #map {
+          height: 100%;
+        }
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #floating-panel {
+          position: absolute;
+          top: 10px;
+          left: 25%;
+          z-index: 5;
+          background-color: #fff;
+          padding: 5px;
+          border: 1px solid #999;
+          text-align: center;
+          font-family: 'Roboto','sans-serif';
+          line-height: 30px;
+          padding-left: 10px;
+        }
+      </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper" class="toggled">
+
+        <!-- Sidebar for main page -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/">
+                        Dashboard
+                    </a>
+                </li>
+                <br>
+                <li>
+                    <a href="publisher" data-placement="top" title="Help" data-content="Input code in Python">Publisher</a>
+
+                </li>
+                <li>
+                    <a href="subscriber" data-placement="top" title="Help" data-content="Input code in Python">Subscriber</a>
+
+                </li>
+                <br>
+                <li>
+                    <a href="#" data-toggle="popover" data-placement="top" title="Help" data-content="Input code in Python">Help</a>
+
+                </li>
+                <li>
+                    <a href="#" data-toggle="popover" data-placement="bottom" title="About" data-content="Developed by Aditya and Pratik">About</a>
+
+                </li>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <li>
+                        <a href="#">Aditya | Pratik</a>
+    
+                    </li>
+                
+
+            </ul>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Subscriber Terminal</h1>
+                <p>Hostname of docker container : {{ hostname }}</p>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="subscriberemail" aria-describedby="emailHelp" placeholder="Enter email of subscriber">
+                    </div>
+                </form>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="fowlplay">
+                    <label class="form-check-label" for="fowlplay">
+                      Fowl Play
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="stackers">
+                    <label class="form-check-label" for="stackers">
+                      Stackers
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="union">
+                    <label class="form-check-label" for="union">
+                      Union
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="edgyveggie">
+                    <label class="form-check-label" for="edgyveggie">
+                      Edgy Veggie
+                    </label>
+                </div>
+                <br>
+                <div class="input-group mb-3">
+                    <button onclick = "doSubscribe(event)" type="button" class="btn btn-secondary">Subscribe</button>
+                </div>
+                
+            </div>
+            <p id="outputbox"></p>
+        </div>
+
+    </div>
+    <script>
+        function doSubscribe(event) { 
+            event.preventDefault();
+            console.log("running onclick");
+            var eventstring ='';
+            subemail = document.getElementById('subscriberemail').value;
+            if(document.getElementById('fowlplay').checked)
+                eventstring+=';fowlplay';
+            if(document.getElementById('stackers').checked)
+                eventstring+=';stackers';
+            if(document.getElementById('union').checked)
+                eventstring+=';union';
+            if(document.getElementById('edgyveggie').checked)
+                eventstring+=';edgyveggie';
+            var requestJson = {'subemail': subemail, 'events': eventstring};
+            $.ajax({
+                type: "POST",
+                url: '/addsub',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(requestJson),
+                success: function(data) {
+                    console.log('SUCCESS');
+                    console.log(data);
+                    document.getElementById("outputbox").innerHTML = "Subscribed";
+                },
+                error: function() {
+                    console.log('FAILED');
+                }
+            });
+        }
+
+    </script>
+
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script> // Popover for the sidebar buttons
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();
+            });
+    </script>
+
+</body>
+
+</html>

@@ -1,9 +1,11 @@
 # Phase 1
 
-## Build Image
+This phase implements a python code executor, where input is Python code and the output is displayed.
 
-docker build -t phase1 .
+## Build and run container
 
-## Run Image
+`docker build -t phase1 .`
 
-docker run -d -p 4000:80 phase1
+`docker run --name my-server -d -p 4000:80 phase1`
+
+Webpage is accessible at localhost:4000

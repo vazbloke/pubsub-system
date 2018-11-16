@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Phase 2</title>
+
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/simple-sidebar.css" rel="stylesheet">
+    <style>
+        #map {
+          height: 100%;
+        }
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #floating-panel {
+          position: absolute;
+          top: 10px;
+          left: 25%;
+          z-index: 5;
+          background-color: #fff;
+          padding: 5px;
+          border: 1px solid #999;
+          text-align: center;
+          font-family: 'Roboto','sans-serif';
+          line-height: 30px;
+          padding-left: 10px;
+        }
+      </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper" class="toggled">
+
+        <!-- Sidebar for main page -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/">
+                        Dashboard
+                    </a>
+                </li>
+                <br>
+                <li>
+                    <a href="publisher" data-placement="top" title="Help" data-content="Input code in Python">Publisher</a>
+
+                </li>
+                <li>
+                    <a href="subscriber" data-placement="top" title="Help" data-content="Input code in Python">Subscriber</a>
+
+                </li>
+                <br>
+                <li>
+                    <a href="#" data-toggle="popover" data-placement="top" title="Help" data-content="Input code in Python">Help</a>
+
+                </li>
+                <li>
+                    <a href="#" data-toggle="popover" data-placement="bottom" title="About" data-content="Developed by Aditya and Pratik">About</a>
+
+                </li>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <li>
+                        <a href="#">Aditya | Pratik</a>
+    
+                    </li>
+                
+
+            </ul>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <h1>Publisher Terminal</h1>
+                    <p>Hostname of docker container : {{ hostname }}</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email of publisher">
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select event</label>
+                        <select class="form-control" id="eventselect">
+                            <option>Select one</option>
+                            <option id="fowlplay">Fowl Play</option>
+                            <option id="stackers">Stackers</option>
+                            <option id="union">Union</option>
+                            <option id="edgyveggie">Edgy Veggie</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" >Message</span>
+                            </div>
+                            <input type="text" id="event_message" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <button onclick = "doPublish(event)" type="button" class="btn btn-secondary">Publish</button>
+                    </div>
+                    
+                </div>
+                <p id="outputbox"></p>
+            </div>
+
+    </div>
+        <script>
+            function doPublish(event) { 
+                event.preventDefault();
+                console.log("running onclick")
+                var eventstring ='';
+                eventmessage = document.getElementById('event_message').value;
+                if(document.getElementById('fowlplay').selected)
+                    eventstring+='fowlplay';
+                if(document.getElementById('stackers').selected)
+                    eventstring+='stackers';
+                if(document.getElementById('union').selected)
+                    eventstring+='union';
+                if(document.getElementById('edgyveggie').selected)
+                    eventstring+='edgyveggie';
+
+                var requestJson = {'events': eventstring, 'eventmessage': eventmessage};
+                console.log(requestJson);
+                $.ajax({
+                    type: "POST",
+                    url: '/addpublish',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(requestJson),
+                    success: function(data) {
+                        console.log('SUCCESS');
+                        console.log(data);
+                        document.getElementById("outputbox").innerHTML = "Published";
+
+                    },
+                    error: function() {
+                        console.log('FAILED');
+                    }
+                });
+            }
+
+        </script>
+
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script> // Popover for the sidebar buttons
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();
+            });
+    </script>
+
+</body>
+
+</html>

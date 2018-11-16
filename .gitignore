@@ -1,3 +1,6 @@
 phase1/test.py
 **/.DS_Store
-Phase1/environment.yml
+*.pyc
+**/.idea/
+**/_pycache_/
+submission/
