@@ -9,7 +9,7 @@ Once published, the system notifies the subscribers of that event by email
 
 It has two docker containers, one for the database, and one for the server.
 
-## Database container
+## Build and run
 
 `docker-compose up --build`
 

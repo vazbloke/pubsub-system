@@ -1,10 +1,8 @@
-import psycopg2
-import time
-
+import psycopg2, time, os
 
 USER = 'postgres'
 PASSWORD = 'root'
-HOST = 'my-postgres-db'
+HOST = os.environ['DB_HOST']
 PORT = '5432'
 
 """
@@ -85,7 +83,7 @@ class DB:
                 print(sql)
                 cur.execute(sql)
         self.commit_close()
-        # TODO: write code to remove subscriber from email list
+        #TODOwrite code to remove subscriber from email list
 
     def add_subscriber(self,subscriber_mail_id, interest, table="events"):
         cursor = self.get_connection()
@@ -139,7 +137,6 @@ class DB:
 
 def main():
     d = DB()
-    #d.add_subscriber("emzdail@google.com","putnam;pistachio")
     d.remove_subscriber('email2@google.com','pistachio')
     d.show_events()
 

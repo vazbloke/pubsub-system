@@ -1,10 +1,8 @@
 import psycopg2, os
 
 USER = 'postgres'
-# PASSWORD = ''
 PASSWORD = 'root'
-# HOST = os.environ['HOST']
-HOST = 'my-postgres-db'
+HOST = os.environ['DB_HOST']
 PORT = '5432'
 
 
@@ -28,7 +26,7 @@ class DB:
 
     def remove_subscriber(self,mail_id,events):
         events.split(';')
-        # TODO: write code to remove subscriber from email list
+        #TODOwrite code to remove subscriber from email list
 
     def add_subscriber(self,subscriber_mail_id, interest, table="events"):
         print(subscriber_mail_id,interest)

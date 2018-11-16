@@ -12,7 +12,7 @@ Once published, the system notifies the subscribers of that event by email
 
 It has five docker containers, one for the database, and one for the server, and three for the brokers.
 
-## Database container
+## Build and run
 
 `docker-compose up --build`
 
