@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:2.7-slim
+FROM python:3.7.1-slim
 
 # Set the working directory to /app
 WORKDIR /app
@@ -17,4 +17,4 @@ EXPOSE 80
 ENV NAME World
 
 # Run server.py when the container launches
-CMD ["python", "server.py"]
+CMD ["python", "-u", "server.py"]

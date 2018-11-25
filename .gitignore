@@ -4,3 +4,4 @@ phase1/test.py
 **/.idea/
 **/_pycache_/
 submission/
+.vscode/

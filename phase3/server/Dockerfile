@@ -1,5 +1,5 @@
 # Use python
-FROM python:2.7-slim
+FROM python:3.7.1-slim
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ EXPOSE 80
 
 ENV NAME World
 
-CMD ["python", "server.py"]
+CMD ["python", "-u", "server.py"]

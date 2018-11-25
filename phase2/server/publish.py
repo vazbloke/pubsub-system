@@ -1,4 +1,4 @@
-import smtplib
+import smtplib, sys
 
 SENDER = "ds.project2.cse@gmail.com"
 PASSWORD = "passphrase"
@@ -15,7 +15,7 @@ class Publish:
             server.sendmail(SENDER, recipient, email_text)
             server.close()
 
-            print('Email sent!')
+            print('Email sent to '+ str(recipient), file=sys.stderr)
         except Exception as e:
             print('Something went wrong...',e)
 

@@ -13,5 +13,5 @@ RUN pip install requests psycopg2-binary
 
 ENV NAME World
 
-CMD ["python", "msg_listener.py"]
+CMD ["python", "-u", "msg_listener.py"]
 # CMD ["./wait-for-it.sh", "my-postgres-db", "python", "msg_listener.py"]

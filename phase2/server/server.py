@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from subprocess import Popen, PIPE
-import requests, json, socket, os
+import requests, json, socket, os, sys
 
 from publish import Publish
 from db import DB
@@ -37,5 +37,4 @@ def addpublish():
     return jsonify("nothing")
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0',debug=True, port=80)

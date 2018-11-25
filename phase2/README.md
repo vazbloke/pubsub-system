@@ -13,4 +13,4 @@ It has two docker containers, one for the database, and one for the server.
 
 `docker-compose up --build`
 
-Webpage is accessible at localhost:5000
+Webpage is accessible at localhost:5002

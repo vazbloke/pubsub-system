@@ -4,7 +4,7 @@ import os
 from broker_list_manager import BrokerManager
 from msg_sender import Messenger
 from log import log_to_file
-import message_utility
+import message_utility, sys
 SENDER = "ds.project2.cse@gmail.com"
 PASSWORD = "passphrase"
 
@@ -13,7 +13,6 @@ class Publish:
     def notify_subscribers(self, recipient, message, broker_name, subject="Email alert from CDS"):
         try:
             log_to_file(",".join(recipient)+" "+message)
-            # os.environ[]
             ip = subprocess.check_output(" awk 'END{print $1}' /etc/hosts ", encoding='utf-8', stderr=subprocess.STDOUT,
                                     shell=True)
             
@@ -21,11 +20,11 @@ class Publish:
             server.ehlo()
             server.login(SENDER, PASSWORD)
             email_text = """Subject: %s\n%s \n Broker name - %s\n Broker IP - %s""" % (subject, message, broker_name, str(ip))
-            print(email_text)
+            # print(email_text)
             server.sendmail(SENDER, recipient, email_text)
             server.close()
 
-            print('Email sent!')
+            print("Email sent to "+str(recipient), file=sys.stderr)
         except Exception as e:
             print('Something went wrong...', e)
 

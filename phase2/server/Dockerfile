@@ -17,4 +17,4 @@ EXPOSE 80
 ENV NAME World
 
 # Run server.py when the container launches
-CMD ["python", "server.py"]
+CMD ["python", "-u", "server.py"]
