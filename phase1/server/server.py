@@ -22,10 +22,10 @@ def runcode():
 
     stdout, stderr = process.communicate()
     if stderr:
-        print("Error.", file=sys.stderr)
+        # print("Error.", file=sys.stderr)
         return jsonify("ERROR!")
     else:
-        print("Executed.", file=sys.stderr)
+        # print("Executed.", file=sys.stderr)
         return jsonify(stdout)
 
 if __name__ == '__main__':

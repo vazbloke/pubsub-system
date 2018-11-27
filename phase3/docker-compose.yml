@@ -26,6 +26,9 @@ services:
       - NEIGHBORS=broker-2,broker-3
       - BROKER_NAME=broker_1
       - DB_HOST=postgres-phase3
+      - broker_1=broker-1
+      - broker_2=broker-2
+      - broker_3=broker-3
   
   broker-2:
     build: broker/
@@ -34,6 +37,9 @@ services:
       - NEIGHBORS=broker-1
       - BROKER_NAME=broker_2
       - DB_HOST=postgres-phase3
+      - broker_1=broker-1
+      - broker_2=broker-2
+      - broker_3=broker-3
   
   broker-3:
     build: broker/
@@ -42,4 +48,7 @@ services:
       - NEIGHBORS=broker-1
       - BROKER_NAME=broker_3
       - DB_HOST=postgres-phase3
+      - broker_1=broker-1
+      - broker_2=broker-2
+      - broker_3=broker-3
   

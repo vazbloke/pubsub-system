@@ -1,5 +1,5 @@
 # first of all import the socket library
-import socket
+import socket, os
 import pickle
 import _thread
 from broker import Broker
